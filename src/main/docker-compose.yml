@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: rent_ease_root_password
+      MYSQL_DATABASE: rent_ease_db
+      MYSQL_USER: rent_ease_user
+      MYSQL_PASSWORD: rent_ease_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - rent-ease-network
+
+#  app:
+#    build: .
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - db
+#    networks:
+#      - rent-ease-network
+
+networks:
+  rent-ease-network:
+    driver: bridge
+
+volumes:
+  db-data:
